@@ -1,0 +1,17 @@
+#Ligne de code à lancer sur le serveur pour obtenir la vidéo d'une webcam :
+
+ ~/Downloads/gst/gst-rtsp-server-1.4.4/examples/./test-launch "v4l2src device=/dev/video0 ! videoscale ! "video/x-raw,width=640,height=480,framerate=30/1,format=I420" ! queue ! jpegenc ! rtpjpegpay name=pay0 pt=96 -v"
+
+#Ligne de code à lancer sur le serveur pour obtenir la vidéo de deux webcams en side by side avec une résolution 320x240 chacune:
+
+~/Downloads/gst/gst-rtsp-server-1.4.4/examples/./test-launch "(-e videomixer name=mix ! jpegenc ! rtpjpegpay name=pay0 pt=96 \
+videotestsrc pattern=1 ! video/x-raw, format=(string)YUY2, width=(int)640, height=(int)240, framerate=(fraction)15/1! videobox border-alpha=0 top=0 left=0 ! mix. \
+ v4l2src device=/dev/video0 ! video/x-raw, format=(string)YUY2, width=(int)320, height=(int)240, framerate=(fraction)15/1 ! videobox border-alpha=0 top=0 left=-320 ! mix. \
+ v4l2src device=/dev/video1 ! video/x-raw, format=(string)YUY2, width=(int)320, height=(int)240, framerate=(fraction)15/1 ! videobox border-alpha=0 top=0 left=0 ! mix.)"
+ 
+#Ligne de code à lancer sur le serveur pour obtenir la vidéo de deux webcams en side by side avec une résolution 640x480 chacune:
+ 
+ ~/Downloads/gst/gst-rtsp-server-1.4.4/examples/./test-launch "(-e videomixer name=mix ! jpegenc ! rtpjpegpay name=pay0 pt=96 \
+videotestsrc pattern=1 ! video/x-raw, format=(string)YUY2, width=(int)1280, height=(int)480, framerate=(fraction)15/1! videobox border-alpha=0 top=0 left=0 ! mix. \
+ v4l2src device=/dev/video0 ! video/x-raw, format=(string)YUY2, width=(int)640, height=(int)480, framerate=(fraction)15/1 ! videobox border-alpha=0 top=0 left=-640 ! mix. \
+ v4l2src device=/dev/video1 ! video/x-raw, format=(string)YUY2, width=(int)640, height=(int)480, framerate=(fraction)15/1 ! videobox border-alpha=0 top=0 left=0 ! mix.)"
