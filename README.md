@@ -9,10 +9,15 @@ sudo apt-get install subversion libv4l-dev libjpeg8-dev imagemagick gstreamer1.0
 sudo pip3 evdev
  
 cd ~/Downloads/
-mkdir gst
-cd gst
-wget https://gstreamer.freedesktop.org/src/gst-rtsp-server/gst-rtsp-server-1.4.4.tar.xz
-tar -xf gst-rtsp-server-1.4.4.tar.xz
-cd gst-rtsp-server-1.4.4
-sudo ./autogen.sh
 
+mkdir gst
+
+cd gst
+
+wget https://gstreamer.freedesktop.org/src/gst-rtsp-server/gst-rtsp-server-1.4.4.tar.xz
+
+tar -xf gst-rtsp-server-1.4.4.tar.xz
+
+cd gst-rtsp-server-1.4.4
+
+sudo ./autogen.sh
